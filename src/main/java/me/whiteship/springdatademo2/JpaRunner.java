@@ -1,5 +1,6 @@
 package me.whiteship.springdatademo2;
 
+import org.hibernate.Session;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -18,8 +19,9 @@ public class JpaRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         Account account = new Account();
         account.setUsername("keesun");
-        account.setPassword("jpa");
+        account.setPassword("whiteship");
 
-        entityManager.persist(account);
+        Session session = entityManager.unwrap(Session.class);
+        session.save(account);
     }
 }
