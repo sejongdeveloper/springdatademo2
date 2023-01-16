@@ -6,15 +6,24 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
+
 @Component
 @Transactional
 public class JpaRunner implements ApplicationRunner {
     @Autowired
-    Keesun keesun;
+    PostRepository postRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("=======================");
-        System.out.println(keesun.getName());
+        Post post = new Post();
+        post.setTitle("spring");
+
+        Comment comment = new Comment();
+        comment.setComment("hello");
+
+        postRepository.save(post);
     }
 }
