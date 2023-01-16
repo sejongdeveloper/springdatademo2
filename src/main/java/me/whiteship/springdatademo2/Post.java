@@ -48,4 +48,12 @@ public class Post {
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }
