@@ -10,10 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class JpaRunner implements ApplicationRunner {
     @Autowired
-    PostRepository postRepository;
+    Keesun keesun;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        postRepository.findAll().forEach(System.out::println);
+        System.out.println("=======================");
+        System.out.println(keesun.getName());
     }
 }
