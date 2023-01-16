@@ -29,5 +29,12 @@ public class JpaRunner implements ApplicationRunner {
         Session session = entityManager.unwrap(Session.class);
         session.save(account);
         session.save(study);
+
+        Account keesun = session.load(Account.class, account.getId());
+        keesun.setUsername("whiteship");
+        keesun.setUsername("keesun");
+        keesun.setUsername("keesun");
+        System.out.println("========================");
+        System.out.println(keesun.getUsername());
     }
 }
