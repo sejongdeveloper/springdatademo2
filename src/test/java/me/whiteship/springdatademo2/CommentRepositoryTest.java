@@ -19,7 +19,6 @@ public class CommentRepositoryTest {
 
     @Test
     public void crud() {
-        List<Comment> comments = commentRepository.findAll();
-        assertThat(comments).isEmpty();
+        commentRepository.save(null);
     }
 }
