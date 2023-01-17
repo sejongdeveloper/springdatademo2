@@ -19,6 +19,12 @@ public class CommentRepositoryTest {
 
     @Test
     public void crud() {
-        commentRepository.save(null);
+        Comment comment = new Comment();
+        comment.setLikeCount(100);
+        comment.setComment("spring data jpa");
+        commentRepository.save(comment);
+
+        List<Comment> comments = commentRepository.findByCommentContainsIgnoreCaseAndLikeCountGreaterThan("Spring", 10);
+        assertThat(comments.size()).isEqualTo(1);
     }
 }
