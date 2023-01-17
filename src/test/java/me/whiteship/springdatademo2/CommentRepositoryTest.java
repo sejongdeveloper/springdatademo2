@@ -22,6 +22,6 @@ public class CommentRepositoryTest {
     public void crud() {
         Optional<Comment> byId = commentRepository.findById(100L);
         assertThat(byId).isEmpty();
-        Comment comment = byId.orElse(new Comment());
+        Comment comment = byId.orElseThrow(IllegalArgumentException::new);
     }
 }
