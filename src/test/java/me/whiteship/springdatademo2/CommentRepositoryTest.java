@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class CommentRepositoryTest {
@@ -15,9 +19,7 @@ public class CommentRepositoryTest {
 
     @Test
     public void crud() {
-        Comment comment = commentRepository.findById(100L);
-        if (comment == null) {
-            throw new IllegalArgumentException();
-        }
+        List<Comment> comments = commentRepository.findAll();
+        assertThat(comments).isEmpty();
     }
 }
