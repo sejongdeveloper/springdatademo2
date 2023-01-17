@@ -20,8 +20,9 @@ public class CommentRepositoryTest {
 
     @Test
     public void crud() {
-        Optional<Comment> byId = commentRepository.findById(100L);
-        assertThat(byId).isEmpty();
-        Comment comment = byId.orElseThrow(IllegalArgumentException::new);
+        Comment comment = commentRepository.findById(100L);
+        if (comment == null) {
+            throw new IllegalArgumentException();
+        }
     }
 }
