@@ -12,9 +12,9 @@ public class Comment {
     @GeneratedValue
     private Long id;
 
-    private String title;
-
     private String comment;
+
+    private Integer likeCount;
 
     @ManyToOne
     private Post post;
@@ -25,14 +25,6 @@ public class Comment {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getComment() {
@@ -49,5 +41,13 @@ public class Comment {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int like) {
+        this.likeCount = like;
     }
 }
