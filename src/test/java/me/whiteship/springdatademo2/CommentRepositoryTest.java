@@ -36,6 +36,7 @@ public class CommentRepositoryTest {
 
         List<Comment> comments = future.get();
         comments.forEach(System.out::println);
+
     }
 
     private void createCommnet(int likeCount, String comment) {
