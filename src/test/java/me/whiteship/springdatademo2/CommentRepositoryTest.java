@@ -53,7 +53,7 @@ public class CommentRepositoryTest {
             }
         });
 
-        Thread.sleep(5_000);
+//        Thread.sleep(5_000);
     }
 
     private void createCommnet(int likeCount, String comment) {
