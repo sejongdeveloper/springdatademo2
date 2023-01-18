@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -30,13 +32,22 @@ public class CommentRepositoryTest {
 
         PageRequest pageRequest = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "likeCount"));
 
-        Future<List<Comment>> future = commentRepository.findByCommentContainsIgnoreCase("Spring", pageRequest);
+        ListenableFuture<List<Comment>> future = commentRepository.findByCommentContainsIgnoreCase("Spring", pageRequest);
         System.out.println("===========");
         System.out.println("is done?" + future.isDone());
 
-        List<Comment> comments = future.get();
-        comments.forEach(System.out::println);
+        future.addCallback(new ListenableFutureCallback<List<Comment>>() {
+            @Override
+            public void onFailure(Throwable ex) {
+                System.out.println(ex);
+            }
 
+            @Override
+            public void onSuccess(List<Comment> comments) {
+                System.out.println("==================");
+                comments.forEach(System.out::println);
+            }
+        });
     }
 
     private void createCommnet(int likeCount, String comment) {
