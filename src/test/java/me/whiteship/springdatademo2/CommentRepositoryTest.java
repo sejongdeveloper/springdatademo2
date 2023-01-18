@@ -1,5 +1,6 @@
 package me.whiteship.springdatademo2;
 
+import org.assertj.core.internal.Futures;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
