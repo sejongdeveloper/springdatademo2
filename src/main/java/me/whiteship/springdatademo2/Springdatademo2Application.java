@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
+@EnableAsync
 public class Springdatademo2Application {
 
     public static void main(String[] args) {

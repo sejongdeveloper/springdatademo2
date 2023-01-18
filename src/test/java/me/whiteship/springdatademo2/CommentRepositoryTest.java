@@ -29,6 +29,10 @@ public class CommentRepositoryTest {
     public void crud() throws ExecutionException, InterruptedException {
         createCommnet(100, "spring data jpa");
         createCommnet(55, "HIBERNATE SPRING");
+        commentRepository.flush();
+
+        List<Comment> comments = commentRepository.findAll();
+        assertThat(comments.size()).isEqualTo(2);
 
         PageRequest pageRequest = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "likeCount"));
 
@@ -43,11 +47,13 @@ public class CommentRepositoryTest {
             }
 
             @Override
-            public void onSuccess(List<Comment> comments) {
-                System.out.println("==================");
-                comments.forEach(System.out::println);
+            public void onSuccess(List<Comment> result) {
+                System.out.println("======= Async =======");
+                System.out.println(result.size());
             }
         });
+
+        Thread.sleep(5_000);
     }
 
     private void createCommnet(int likeCount, String comment) {
